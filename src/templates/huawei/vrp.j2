@@ -1,0 +1,22 @@
+interface GigabitEthernet0/0/0
+ description Link to the Internet
+ ip address {{ ip_address }} {{ subnet_mask }}
+ no shutdown
+
+interface GigabitEthernet0/0/1
+ description Link to the Internal Network
+ ip address {{ internal_ip }} {{ internal_subnet_mask }}
+ no shutdown
+
+system-view
+ undo ip routing
+ ip routing
+ ip route-static {{ destination }} {{ mask }} {{ next_hop }}
+
+user-interface vty 0 4
+ authentication-mode scheme
+ protocol inbound ssh
+ set authentication password {{ vty_password }}
+
+# Save the configuration
+save force

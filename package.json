@@ -1,0 +1,27 @@
+{
+  "name": "network-automation-tool",
+  "version": "1.0.0",
+  "description": "A web-based automation tool for network configuration, analysis, monitoring, and reporting.",
+  "main": "src/app.ts",
+  "scripts": {
+    "start": "ts-node src/app.ts",
+    "build": "tsc",
+    "test": "jest"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "ssh2": "^0.8.9",
+    "xlsx": "^0.17.0",
+    "pdfkit": "^0.12.1",
+    "tensorflow": "^2.4.0",
+    "jinja2": "^2.11.3"
+  },
+  "devDependencies": {
+    "typescript": "^4.1.2",
+    "ts-node": "^9.1.1",
+    "jest": "^26.6.3",
+    "@types/jest": "^26.0.24",
+    "@types/node": "^14.14.31"
+  },
+  "license": "MIT"
+}

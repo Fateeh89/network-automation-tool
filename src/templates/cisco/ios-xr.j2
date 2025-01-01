@@ -1,0 +1,42 @@
+interface GigabitEthernet {
+    description: "{{ description }}"
+    no shutdown
+}
+
+interface Loopback {
+    ip address {{ ip_address }} {{ subnet_mask }}
+}
+
+router ospf {{ ospf_process_id }} {
+    network {{ network }} {{ wildcard_mask }} area {{ area }}
+}
+
+router bgp {{ bgp_as_number }} {
+    neighbor {{ neighbor_ip }} remote-as {{ neighbor_as }}
+}
+
+mpls {
+    ldp {
+        router-id {{ router_id }}
+    }
+}
+
+interface {{ interface_name }} {
+    mtu {{ mtu }}
+    ip address {{ ip_address }} {{ subnet_mask }}
+}
+
+vrf {{ vrf_name }} {
+    rd {{ route_distinguisher }}
+    route-target both {{ route_target }}
+}
+
+{{#if static_routes}}
+ip route {{ destination }} {{ mask }} {{ next_hop }}
+{{/if}}
+
+{{#if dynamic_routing}}
+{{#each dynamic_protocols}}
+{{this}}
+{{/each}}
+{{/if}}

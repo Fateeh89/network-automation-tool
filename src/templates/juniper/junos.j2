@@ -1,0 +1,13 @@
+{% raw %}
+# Juniper Configuration Template for Jinja2
+
+# This template is designed for Juniper devices and includes common configuration commands.
+
+set system host-name {{ hostname }}
+set interfaces {{ interface_name }} unit 0 family inet address {{ ip_address }}/{{ subnet_mask }}
+set routing-options static route {{ destination }} next-hop {{ next_hop }}
+set security zones security-zone {{ security_zone }} interfaces {{ interface_name }}
+set security policies from-zone {{ security_zone }} to-zone {{ destination_zone }} policy {{ policy_name }} then permit
+set system login user {{ username }} class {{ user_class }} authentication plain-text-password
+{{ password }}
+{% endraw %}

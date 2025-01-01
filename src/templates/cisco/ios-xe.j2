@@ -1,0 +1,28 @@
+{% raw %}
+interface GigabitEthernet {
+    description: "{{ description }}"
+    ip address: "{{ ip_address }}"
+    no shutdown
+}
+
+interface Vlan {
+    id: "{{ vlan_id }}"
+    name: "{{ vlan_name }}"
+    ip address: "{{ vlan_ip }}"
+}
+
+router ospf {{ ospf_process_id }} {
+    network {{ ospf_network }} area {{ ospf_area }}
+}
+
+router bgp {{ bgp_as_number }} {
+    neighbor {{ bgp_neighbor }} remote-as {{ bgp_neighbor_as }}
+    network {{ bgp_network }}
+}
+
+interface {{ interface_name }} {
+    mtu {{ mtu_size }}
+    bandwidth {{ bandwidth }}
+}
+
+{% endraw %}

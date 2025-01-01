@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Network Automation Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Network Automation Dashboard</h1>
+    </header>
+    <main>
+        <section id="performance">
+            <h2>Real-Time Performance</h2>
+            <canvas id="performanceChart"></canvas>
+        </section>
+        <section id="reports">
+            <h2>Generate Reports</h2>
+            <button id="generateXlsx">Generate XLSX Report</button>
+            <button id="generatePdf">Generate PDF Report</button>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2023 Network Automation Tool</p>
+    </footer>
+    <script src="dashboard.js"></script>
+</body>
+</html>

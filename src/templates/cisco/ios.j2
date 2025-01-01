@@ -1,0 +1,45 @@
+interface GigabitEthernet {{ 
+    description: "Gigabit Ethernet interface configuration" 
+}} 
+
+interface TenGigabitEthernet {{ 
+    description: "Ten Gigabit Ethernet interface configuration" 
+}} 
+
+interface Loopback {{ 
+    description: "Loopback interface configuration" 
+}} 
+
+hostname {{ hostname }} 
+
+{{#each interfaces}} 
+interface {{ this.type }} {{ this.name }} 
+  description {{ this.description }} 
+  ip address {{ this.ip_address }} {{ this.subnet_mask }} 
+  no shutdown 
+{{/each}} 
+
+router ospf {{ ospf_process_id }} 
+  network {{ ospf_network }} area {{ ospf_area }} 
+
+ip route {{ destination }} {{ mask }} {{ next_hop }} 
+
+{{#if static_routes}} 
+{{#each static_routes}} 
+ip route {{ this.destination }} {{ this.mask }} {{ this.next_hop }} 
+{{/each}} 
+{{/if}} 
+
+{{#if access_lists}} 
+{{#each access_lists}} 
+access-list {{ this.id }} permit {{ this.protocol }} {{ this.source }} {{ this.wildcard }} 
+{{/each}} 
+{{/if}} 
+
+line vty 0 4 
+  login local 
+  transport input ssh 
+  exec-timeout 5 0 
+  privilege level 15 
+  exit 
+end
